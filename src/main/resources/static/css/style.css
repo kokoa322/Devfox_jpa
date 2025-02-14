@@ -1,0 +1,108 @@
+/* 기본 레이아웃 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+/* 헤더 스타일 */
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* 테이블 스타일 */
+table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    display: block;
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #45a049;
+}
+
+.pagination li.active a {
+    background-color: #333;
+}
+
+.pagination li a:focus {
+    outline: none;
+}
+
+.pagination li a:hover {
+    background-color: #45a049;
+}
+
+.pagination li:first-child a {
+    border-radius: 5px 0 0 5px;
+}
+
+.pagination li:last-child a {
+    border-radius: 0 5px 5px 0;
+}
+
+.pagination li.disabled a {
+    background-color: #ddd;
+    color: #aaa;
+    pointer-events: none;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .pagination a {
+        padding: 6px 12px;
+    }
+}
