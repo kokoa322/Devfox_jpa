@@ -16,11 +16,11 @@ public class Comment {
     @Column(nullable = false)  // 댓글 내용은 필수로 입력해야 함
     private String content;  // 댓글 내용
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id", nullable = false)  // 게시글은 필수
     private Board board;  // 해당 댓글이 속한 게시글
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)  // 유저는 필수
     private User user;  // 댓글 작성자 (유저)
 

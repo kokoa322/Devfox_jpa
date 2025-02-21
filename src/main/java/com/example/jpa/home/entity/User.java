@@ -25,10 +25,10 @@ public class User {
     @Column(nullable = false)  // 비밀번호는 필수
     private String password;  // 비밀번호
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)  // 작성한 게시글 목록
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)  // 작성한 게시글 목록
     private List<Board> boards;  // 작성한 게시글 목록
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)  // 작성한 댓글 목록
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)  // 작성한 댓글 목록
     private List<Comment> comments;  // 작성한 댓글 목록
 
     public User() {}

@@ -14,6 +14,7 @@ public class DataInitializer implements CommandLineRunner {
 
     private final UserRepository userRepository;
     private final BoardRepository boardRepository;
+    private boolean initialized = false; // 초기화 상태를 추적
 
     public DataInitializer(UserRepository userRepository, BoardRepository boardRepository) {
         this.userRepository = userRepository;
@@ -22,23 +23,28 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // 유저 1명 생성
-        User user = new User();
-        user.setUsername("admin");
-        user.setEmail("admin@example.com");
-        user.setPassword("password");
-        userRepository.save(user);
+        if (!initialized) {  // 초기화되지 않은 경우에만 실행
+            // 유저 1명 생성
+            User user = new User();
+            user.setUsername("admin");
+            user.setEmail("admin@example.com");
+            user.setPassword("password");
+            userRepository.save(user);
 
-        // 300개의 게시글 생성
-        IntStream.range(0, 300).forEach(i -> {
-            Board board = new Board();
-            board.setTitle("게시글 " + (i + 1));
-            board.setContent("게시글 내용 " + (i + 1));
-            board.setAuthor(user.getUsername());
-            board.setUser(user); // 작성자는 방금 저장한 유저
+            // 300개의 게시글 생성
+            IntStream.range(0, 10).forEach(i -> {
+                Board board = new Board();
+                board.setTitle("게시글 " + (i + 1));
+                board.setContent("게시글 내용 " + (i + 1));
+                board.setAuthor(user.getUsername());
+                board.setUser(user); // 작성자는 방금 저장한 유저
 
-            // 게시글 저장
-            boardRepository.save(board);
-        });
+                // 게시글 저장
+                boardRepository.save(board);
+            });
+
+            initialized = true;  // 초기화 완료
+        }
     }
 }
+

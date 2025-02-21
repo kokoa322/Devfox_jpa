@@ -22,11 +22,11 @@ public class Board {
     @Column(nullable = false, length = 50)  // 작성자는 null이 아니며 길이를 50으로 제한
     private String author;  // 작성자
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)  // 유저는 필수, null 허용 안 함
     private User user;  // 게시글 작성자 (유저)
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)  // 댓글 삭제 시 게시글도 함께 삭제
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)  // 댓글 삭제 시 게시글도 함께 삭제
     private List<Comment> comments;  // 게시글에 달린 댓글들
 
     // 기본 생성자
